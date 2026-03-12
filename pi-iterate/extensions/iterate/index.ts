@@ -235,16 +235,6 @@ export default function (pi: ExtensionAPI) {
 				}
 			}
 
-			// Get time limit
-			const timeLimitStr = await ctx.ui.input("Time limit in seconds (0 = no limit):", "0");
-			if (timeLimitStr === null) { if (didStash) stashPop(repoRoot); return; }
-			const timeLimit = parseInt(timeLimitStr, 10);
-			if (isNaN(timeLimit) || timeLimit < 0) {
-				ctx.ui.notify("Invalid time limit — enter a number of seconds, or 0 for unlimited", "error");
-				if (didStash) stashPop(repoRoot);
-				return;
-			}
-
 			// ─── Create worktrees ───
 			setWidgetPhase(ctx, "creating", { baseBranch: "" });
 			let session: IterationSession;
@@ -280,20 +270,9 @@ export default function (pi: ExtensionAPI) {
 				branch: wt.branch,
 			}));
 
-			const abortController = new AbortController();
-			let timeLimitTimer: ReturnType<typeof setTimeout> | undefined;
-			if (timeLimit > 0) {
-				timeLimitTimer = setTimeout(() => {
-					abortController.abort();
-					ctx.ui.notify(`⏱ Time limit of ${timeLimit}s reached — stopping iterations`, "warning");
-				}, timeLimit * 1000);
-			}
-
-			const result = await runIterations(configs, abortController.signal, (progress) => {
+			const result = await runIterations(configs, undefined, (progress) => {
 				updateIterationProgress(ctx, progress);
 			});
-
-			if (timeLimitTimer !== undefined) clearTimeout(timeLimitTimer);
 
 			lastResult = result;
 			setWidgetPhase(ctx, "done", { iterations: result.iterations, startTime });

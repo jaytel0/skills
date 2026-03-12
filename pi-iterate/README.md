@@ -32,7 +32,6 @@
 - **Rich diff viewer** — summary stats, full diffs, and cross-diffs between iterations
 - **Smart consolidation** — full merge, cherry-pick specific commits, or keep branches for later
 - **Session persistence** — sessions survive pi restarts via `.iterate-meta.json`
-- **Time limits** — optional timeout for stopping iterations early
 
 ---
 
@@ -67,7 +66,6 @@ You'll be asked:
 1. **How many iterations** (2–8)
 2. **Prompt mode** — same prompt, base + twist, or fully different
 3. **Prompts** — enter your instructions
-4. **Time limit** — optional timeout in seconds
 
 The extension creates isolated git worktrees and spawns parallel pi agents, each working independently on their own branch.
 
