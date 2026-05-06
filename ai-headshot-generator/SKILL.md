@@ -78,11 +78,29 @@ const client = new OpenAI({
 ```
 </details>
 
+## What to Ask the User For
+
+Before starting, guide the user to provide two things:
+
+### 1. Identity references (5–10 photos of themselves)
+Ask: *"Give me 5–10 photos of yourself — different angles, different lighting, different days if possible. The more variety, the better I can preserve your likeness. Drop them in a `personal-references/` folder."*
+
+Good references include:
+- Front-facing, three-quarter, and profile angles
+- Different lighting conditions (indoor, outdoor, natural, flash)
+- Clear shots of the face (no sunglasses, minimal obstruction)
+- A mix of casual and put-together — the model needs to know what you actually look like, not just one flattering angle
+
+### 2. Style references (1 image per headshot they want)
+Ask: *"Now give me a reference image for each style of headshot you want. Find a portrait you like the look of — the lighting, colors, mood, background — and drop it in `style-references/`. I'll generate a headshot of you that matches each style."*
+
+Each style reference = one headshot output. If they give 5 style references, they get 5 headshots. If they give 1, they get 1. The user does NOT need to describe the style in words — you will visually analyze each reference image yourself in Phase 1.
+
 ## Requirements
 
 - **API key** for one of the providers above
-- **Personal reference photos** (3–10 images of the subject from different angles)
-- **Style reference images** (1+ images showing the desired aesthetic)
+- **Personal reference photos** (5–10 images of the subject from different angles)
+- **Style reference images** (1 per desired headshot output)
 
 ## The Pipeline
 
