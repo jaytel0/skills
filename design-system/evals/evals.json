@@ -1,0 +1,50 @@
+{
+  "skill_name": "design-system",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build an orders route component that lists orders in a data table. Columns: Order ID, Customer, Status (badge), Total, Date. Use the Admin design system.",
+      "expected_output": "A React component that imports DataTable and Badge from ~/ui, defines a typed ColumnDef<T> array, renders <DataTable columns={...} items={...} />, and uses Badge variants for status semantics.",
+      "expectations": [
+        "Imports DataTable and Badge from '~/ui'",
+        "Uses ColumnDef<T> type annotation for column definitions",
+        "Renders <DataTable columns={...} items={...} />",
+        "Status column uses <Badge variant='...'> instead of a custom span",
+        "Uses React className where custom classes are needed"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add a country/region selector to a customer address form. It should be a dropdown with a label and error state support. Use the Admin design system.",
+      "expected_output": "Uses modern Select namespace components with semantic label and error text, with imports from ~/ui.",
+      "expectations": [
+        "Imports Select from '~/ui'",
+        "Uses modern Select namespace components",
+        "Uses semantic label and error text connected to the control",
+        "Does not implement custom dropdown accessibility"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a form section for editing a customer's profile with fields for name and bio. Include labels and error state support. Use the Admin design system.",
+      "expected_output": "Uses Input for the name field, a native textarea for bio, and semantic labels/descriptions/error text.",
+      "expectations": [
+        "Imports Input from '~/ui'",
+        "Uses semantic labels for each form field",
+        "Uses modern Input for the text field",
+        "Uses a native textarea for the multi-line field because no modern Textarea exists yet",
+        "Connects error text to validation state"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Add a small status indicator badge next to an order title that shows Paid, Pending, or Refunded. Use the Admin design system.",
+      "expected_output": "Uses modern Badge component with an appropriate semantic variant.",
+      "expectations": [
+        "Imports Badge from '~/ui'",
+        "Uses Badge from the design system",
+        "Uses variant prop rather than custom color classes"
+      ]
+    }
+  ]
+}
